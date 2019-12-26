@@ -19,5 +19,6 @@ public class CuratorCreateSessionDemo {
 											.retryPolicy(new ExponentialBackoffRetry(1000,3)).build();
 		curatorFramework1.start();
 		System.out.println("success");
+		
 	}
 }
