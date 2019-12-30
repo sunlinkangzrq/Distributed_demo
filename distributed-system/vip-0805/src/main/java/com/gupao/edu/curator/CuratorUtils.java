@@ -10,7 +10,7 @@ public class CuratorUtils {
 	
 	public static  CuratorFramework  getInstance() {
 		CuratorFramework  curatorFramework=CuratorFrameworkFactory
-				.newClient(CONNECTING, 5000, 5000, new ExponentialBackoffRetry(1000, 3));
+				.newClient(CONNECTING, 5000, 10000, new ExponentialBackoffRetry(1000, 3));
 		curatorFramework.start();
 		return curatorFramework;
 	}
