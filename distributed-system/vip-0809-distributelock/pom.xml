@@ -4,6 +4,7 @@
     <groupId>com.gupao.edu</groupId>
     <artifactId>distributed-system</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <relativePath>../pom</relativePath>
   </parent>
   <artifactId>vip-0809-distributelock</artifactId>
   <dependencies>
