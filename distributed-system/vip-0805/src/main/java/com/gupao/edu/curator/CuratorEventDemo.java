@@ -41,7 +41,6 @@ public class CuratorEventDemo {
 		cache.start();
 		cache.getListenable().addListener(new PathChildrenCacheListener() {
 			
-			@Override
 			public void childEvent(CuratorFramework client, PathChildrenCacheEvent event) throws Exception {
 				// TODO Auto-generated method stub
 				switch(event.getType()) {

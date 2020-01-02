@@ -1,8 +1,10 @@
 package com.gupao.edu.zkclient;
 
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.I0Itec.zkclient.IZkDataListener;
 import org.I0Itec.zkclient.ZkClient;
@@ -10,7 +12,7 @@ import org.I0Itec.zkclient.exception.ZkNodeExistsException;
 import org.apache.zookeeper.CreateMode;
 
 public class MasterSelector {
-	private ZkClient  zkClient;
+	private static ZkClient  zkClient;
 	private IZkDataListener  dataListener;
 	private UserServer  server;
 	private UserServer  master;
@@ -59,7 +61,6 @@ public class MasterSelector {
 			master=server;
 			System.out.println(server.getMc_name()+"->获取master，你们都要听从我的安排");
 			executorService.schedule(new Runnable() {
-				
 				public void run() {
 					// TODO Auto-generated method stub
 					releaseMaster();
@@ -69,10 +70,9 @@ public class MasterSelector {
 			// TODO: handle exception
 			UserServer data=zkClient.readData(Master_Path, true);
 			if(data==null){
-				master=server;
 				chooseMaster();
 			}else{
-				chooseMaster();
+				master=data;
 			}
 		}
 	}
@@ -80,6 +80,7 @@ public class MasterSelector {
 	private void  releaseMaster(){
 		if(checkIsMaster()){
 			zkClient.delete(Master_Path);
+			System.out.println(master.getMc_name()+"->master被删除");
 		}
 	}
 	
@@ -90,5 +91,36 @@ public class MasterSelector {
 			return true;
 		}
 		return false;
+	}
+	public static void main(String[] args) {
+		final String  CONNECTING="106.54.165.85:2181";
+		final CountDownLatch  countdown=new CountDownLatch(3);
+		final AtomicInteger value = new AtomicInteger();
+		for(int  i=0;i<3;i++){
+			new Thread(new Runnable() {
+				
+				public void run() {
+					// TODO Auto-generated method stub
+					try {
+						value.incrementAndGet();
+						countdown.countDown();
+						UserServer  server=new UserServer();
+						server.setMc_id(value.get());
+						server.setMc_name("mc_"+value.get());
+						countdown.await();
+						ZkClient  zkclient=new ZkClient(CONNECTING,15000);
+						MasterSelector  selector=new MasterSelector(zkclient, server);
+						while(true){
+							selector.start();
+							Thread.sleep(10000);
+							selector.stop();
+						}
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}).start();
+		}
 	}
 }
