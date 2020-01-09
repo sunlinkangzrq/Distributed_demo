@@ -2,7 +2,7 @@ package com.gupao.edu.zkclient;
 
 import java.io.Serializable;
 
-public class UserServer  implements  Serializable{
+public class UserCenter  implements  Serializable{
 	/**
 	 * 
 	 */
