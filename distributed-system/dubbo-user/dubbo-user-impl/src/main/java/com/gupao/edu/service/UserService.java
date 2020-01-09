@@ -1,6 +1,7 @@
 package com.gupao.edu.service;
 
 
+
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.gupao.edu.dto.OrderRequest;
@@ -19,7 +20,7 @@ public class UserService {
 		
 	}
 	public static void main(String[] args) {
-		ClassPathXmlApplicationContext  context=new ClassPathXmlApplicationContext("consumer.xml");
+		ClassPathXmlApplicationContext  context=new ClassPathXmlApplicationContext("spring/order-consumer.xml");
 		IOrderService service=(IOrderService) context.getBean("orderservice");
 		
 		OrderRequest  request=new OrderRequest();
