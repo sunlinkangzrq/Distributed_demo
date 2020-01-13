@@ -21,6 +21,9 @@ public class UserService {
 	}
 	public static void main(String[] args) {
 		ClassPathXmlApplicationContext  context=new ClassPathXmlApplicationContext("spring/order-consumer.xml");
+		IOrderQueryService query=(IOrderQueryService) context.getBean("orderqueryservice");
+		System.out.println(query.doQuery("mic"));
+		
 		IOrderService service=(IOrderService) context.getBean("orderservice");
 		
 		OrderRequest  request=new OrderRequest();
