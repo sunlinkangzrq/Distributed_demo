@@ -4,16 +4,11 @@
        xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
        xsi:schemaLocation="http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans.xsd        http://code.alibabatech.com/schema/dubbo        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 	
-	<!-- 当前项目在分布式系统中的唯一名称，计算依赖管理的标签  -->
-	<dubbo:application  name="order-consumer" />
+	<!-- 声明标签 -->
+	<context:annotation-config />
+	<!-- 扫面类 -->
+	<context:component-scan base-package="com.gupao.edu.api.serviceImpl" />
 	
-	<!-- 这个服务要暴露的服务地址  --><!-- subscribe="false" 不订阅 -->
-	<dubbo:registry protocol="zookeeper" address="106.54.165.85:2181"  />
-	
-	<!-- 指定IP和端口及对应的调用方法　　点对点调用 -->
-	<!-- <dubbo:reference  id="orderservice"  interface="com.gupao.edu.service.IOrderService"  
-			url="dubbo://10.3.36.71:20880/com.gupao.edu.service.IOrderService" /> -->
-	<!-- 调用zookeeper注册中心 -->	
 	<dubbo:reference  id="orderservice"  interface="com.gupao.edu.service.IOrderService"  protocol="dubbo"  version="1.1" >
 		<!-- <dubbo:method name="doOrder" async="true" timeout="10000"/> -->
 	</dubbo:reference>

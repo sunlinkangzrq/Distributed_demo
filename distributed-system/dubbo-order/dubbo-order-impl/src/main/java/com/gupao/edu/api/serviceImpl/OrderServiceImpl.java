@@ -1,9 +1,13 @@
 package com.gupao.edu.api.serviceImpl;
 
+import org.springframework.stereotype.Service;
+
 import com.gupao.edu.dto.OrderRequest;
 import com.gupao.edu.dto.OrderResponse;
 import com.gupao.edu.service.IOrderService;
 
+
+@Service(value="orderservice")
 public class OrderServiceImpl implements IOrderService{
 
 	public OrderResponse doOrder(OrderRequest request) {

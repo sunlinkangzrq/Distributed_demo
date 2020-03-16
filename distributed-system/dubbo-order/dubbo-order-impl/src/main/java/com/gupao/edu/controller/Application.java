@@ -1,4 +1,4 @@
-package com.gupao.edu.api.serviceImpl;
+package com.gupao.edu.controller;
 
 import com.alibaba.dubbo.container.Main;
 
