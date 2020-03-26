@@ -33,13 +33,13 @@
 	<dubbo:service  interface="com.gupao.edu.service.IOrderService" 
 				ref="orderservice2"  protocol="dubbo"  version="1.1"/>
 	<dubbo:service  interface="com.gupao.edu.service.IOrderQueryService"
-				ref="orderqueryservice" protocol="hessian"  version="1.0"/>
+				ref="orderqueryservice" protocol="dubbo"  version="1.0"/>
 				
 	<!-- <bean id="orderservice"  class="com.gupao.edu.api.serviceImpl.OrderServiceImpl" />
 	
 	<bean id="orderservice2"  class="com.gupao.edu.api.serviceImpl.OrderServiceImpl2" />
 	
 	<bean id="orderqueryservice"  class="com.gupao.edu.api.serviceImpl.OrderQueryServiceImpl" /> -->
-   <!-- <import resource="classpath*:META-INF/spring/order-customer.xml"/>  -->
+   <!-- <import resource="classpath*:META-INF/spring/order-customer.xml"/> -->
 
 </beans>

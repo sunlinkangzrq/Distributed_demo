@@ -10,6 +10,7 @@ public class OrderQueryServiceImpl implements IOrderQueryService {
 
 	public String doQuery(String name) {
 		// TODO Auto-generated method stub
+		System.out.println("hello "+name);
 		return "hello "+name;
 	}
 
