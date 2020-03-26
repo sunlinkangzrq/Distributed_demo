@@ -1,0 +1,29 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.gupao.edu</groupId>
+    <artifactId>distributed-system</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <relativePath>../pom</relativePath>
+  </parent>
+  <artifactId>vip-0809-distributelock</artifactId>
+  <dependencies>
+  	<dependency>
+    	<groupId>org.apache.zookeeper</groupId>
+    	<artifactId>zookeeper</artifactId>
+    </dependency>
+    <!-- zkclient 依赖 -->
+    <dependency>
+    	<groupId>com.101tec</groupId>
+    	<artifactId>zkclient</artifactId>
+    </dependency>
+    <dependency>
+    	<groupId>org.apache.curator</groupId>
+    	<artifactId>curator-framework</artifactId>
+    </dependency>
+    <dependency>
+    	<groupId>org.apache.curator</groupId>
+    	<artifactId>curator-recipes</artifactId>
+    </dependency>
+  </dependencies>
+</project>
