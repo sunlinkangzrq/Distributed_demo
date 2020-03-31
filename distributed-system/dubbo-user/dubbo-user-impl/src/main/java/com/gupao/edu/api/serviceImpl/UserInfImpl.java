@@ -35,13 +35,14 @@ public class UserInfImpl  implements  IUserInf{
 		UserLoginResponse response=new  UserLoginResponse();
 		if(!UserValidator.checkUser(request)) {
 			response.setCode("10001");
-			response.setMemo("账号或者密码不能为空");
+			response.setMemo("请求参数校验失败");
 		}
-		if(!("root".equals(request.getUsername())&&"root".equals(request.getPassword()))) {
-			response.setCode("00001");
-			response.setMemo("账号或者密码不正确");
+		if("root".equals(request.getUsername())&&"root".equals(request.getPassword())) {
+			response.setCode("00000");
+			response.setMemo("登录成功");
 		}
-		response.setCode("00000");
+		response.setCode("00001");
+		response.setMemo("登录失败");
 		return response;
 	}
 	public static void main(String[] args) {
