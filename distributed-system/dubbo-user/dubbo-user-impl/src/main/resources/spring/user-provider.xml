@@ -19,5 +19,5 @@
 	<dubbo:registry protocol="zookeeper" address="106.54.165.85:2181"  />
 	
 	<dubbo:refenrence    interface="com.gupao.edu.inf.IUserInf"  ref="userInf"  protocol="dubbo"/>
-	
+	<!-- <import resource="classpath*:META-INF/client/user-consumer.xml"/> -->
 </beans>

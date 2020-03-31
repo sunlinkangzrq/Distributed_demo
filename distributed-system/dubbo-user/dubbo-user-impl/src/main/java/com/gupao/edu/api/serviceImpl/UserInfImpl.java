@@ -33,10 +33,15 @@ public class UserInfImpl  implements  IUserInf{
 	public UserLoginResponse login(UserLoginRequest request) {
 		// TODO Auto-generated method stub
 		UserLoginResponse response=new  UserLoginResponse();
-		if(UserValidator.checkUser(request)) {
-			response.setCode("0000");
+		if(!UserValidator.checkUser(request)) {
+			response.setCode("10001");
+			response.setMemo("账号或者密码不能为空");
 		}
-		response.setCode("0001");
+		if(!("root".equals(request.getUsername())&&"root".equals(request.getPassword()))) {
+			response.setCode("00001");
+			response.setMemo("账号或者密码不正确");
+		}
+		response.setCode("00000");
 		return response;
 	}
 	public static void main(String[] args) {
