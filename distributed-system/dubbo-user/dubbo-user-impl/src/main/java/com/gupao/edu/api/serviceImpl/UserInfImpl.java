@@ -1,15 +1,23 @@
-package com.gupao.edu.service;
+package com.gupao.edu.api.serviceImpl;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Service;
 
-import com.alibaba.dubbo.rpc.RpcContext;
 import com.gupao.edu.dto.OrderRequest;
 import com.gupao.edu.dto.OrderResponse;
+import com.gupao.edu.dto.UserLoginRequest;
+import com.gupao.edu.dto.UserLoginResponse;
+import com.gupao.edu.inf.IUserInf;
+import com.gupao.edu.service.IOrderQueryService;
+import com.gupao.edu.service.IOrderService;
 
-public class UserService {
+
+@Service("userInf")
+public class UserInfImpl  implements  IUserInf{
+	
 
 	public void doOrder() {
 
@@ -21,7 +29,16 @@ public class UserService {
 		System.out.println("订单反馈结果:" + res);
 
 	}
-
+	
+	public UserLoginResponse login(UserLoginRequest request) {
+		// TODO Auto-generated method stub
+		UserLoginResponse response=new  UserLoginResponse();
+		if(UserValidator.checkUser(request)) {
+			response.setCode("0000");
+		}
+		response.setCode("0001");
+		return response;
+	}
 	public static void main(String[] args) {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring/order-consumer.xml");
 		IOrderQueryService query = (IOrderQueryService) context.getBean("orderqueryservice");
@@ -42,4 +59,5 @@ public class UserService {
 		OrderResponse res = service.doOrder(request);
 		System.out.println("订单反馈结果:" + res);
 	}
+
 }

@@ -11,13 +11,13 @@
 	      http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 	
 	<context:annotation-config/>
-	<context:component-scan base-package:"com.gupao.edu.service"/>
+	<context:component-scan base-package:"com.gupao.edu.api"/>
 	<!-- 当前项目在分布式系统中的唯一名称，计算依赖管理的标签  -->
 	<dubbo:application  name="user-provider" />
 	
 	<!-- 这个服务要暴露的服务地址  --><!-- subscribe="false" 不订阅 -->
 	<dubbo:registry protocol="zookeeper" address="106.54.165.85:2181"  />
 	
-	<dubbo:refenrence  id=""  interface=""></dubbo:refenrence>
+	<dubbo:refenrence    interface="com.gupao.edu.inf.IUserInf"  ref="userInf"  protocol="dubbo"/>
 	
 </beans>
