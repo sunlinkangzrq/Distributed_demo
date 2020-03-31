@@ -4,6 +4,9 @@ import com.gupao.edu.controller.support.ResponseData;
 import com.gupao.edu.controller.support.ResponseEnum;
 import com.gupao.edu.dto.OrderRequest;
 import com.gupao.edu.dto.OrderResponse;
+import com.gupao.edu.dto.UserLoginRequest;
+import com.gupao.edu.dto.UserLoginResponse;
+import com.gupao.edu.inf.IUserInf;
 import com.gupao.edu.service.IOrderService;
 //import com.gupao.vip.mic.dubbo.order.DoOrderRequest;
 //import com.gupao.vip.mic.dubbo.order.DoOrderResponse;
@@ -28,17 +31,17 @@ public class IndexController extends BaseController{
     @Autowired
     IOrderService orderServices;
 
-//    @Autowired
-//    IUserService userService;
+    @Autowired
+    IUserInf userService;
 
 
     @RequestMapping(value = "/index",method = RequestMethod.GET)
     public String index(HttpServletRequest request){
     	
-    	OrderRequest oreq=new OrderRequest();
-    	oreq.setName("康康");
-    	OrderResponse rep=orderServices.doOrder(oreq);
-    	System.out.println(rep.toString());
+//    	OrderRequest oreq=new OrderRequest();
+//    	oreq.setName("康康");
+//    	OrderResponse rep=orderServices.doOrder(oreq);
+//    	System.out.println(rep.toString());
         if(request.getSession().getAttribute("user")==null){
             return "/login";
         }
@@ -55,14 +58,14 @@ public class IndexController extends BaseController{
     @RequestMapping(value="/submitLogin",method=RequestMethod.POST)
     @ResponseBody
     public ResponseData submitLogin(HttpServletRequest request,String loginname,String password){
-//        UserLoginRequest request1= new UserLoginRequest();
-//        request1.setName(loginname);
-//        request1.setPassword(password);
-//        UserLoginResponse response=userService.login(request1);
-//        if("000000".equals(response.getCode())){
-//            request.getSession().setAttribute("user","user");
-//            return setEnumResult(ResponseEnum.SUCCESS, "/");
-//        }
+        UserLoginRequest request1= new UserLoginRequest();
+        request1.setUsername(loginname);
+        request1.setPassword(password);
+        UserLoginResponse response=userService.login(request1);
+        if("000000".equals(response.getCode())){
+            request.getSession().setAttribute("user","user");
+            return setEnumResult(ResponseEnum.SUCCESS, "/");
+        }
         ResponseData data=new ResponseData();
         data.setMessage("1");
         data.setStatus(ResponseEnum.FAILED.getCode());
