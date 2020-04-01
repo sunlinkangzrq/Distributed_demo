@@ -8,7 +8,6 @@
   <modules>
     <module>vip-0805</module>
     <module>vip-0809-distributelock</module>
-    <module>dubbo</module>
     <module>dubbo-order</module>
     <module>dubbo-user</module>
   </modules>
