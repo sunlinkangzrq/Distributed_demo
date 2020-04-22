@@ -13,27 +13,30 @@
 	<!-- 声明标签 -->
 	<context:annotation-config />
 	<!-- 扫面类 -->
-	<context:component-scan base-package="com.gupao.edu.api.serviceImpl" />
+	<context:component-scan base-package="com.gupao.edu.api" />
 	
 	<!-- 当前项目在分布式系统中的唯一名称，计算依赖管理的标签  -->
-	<dubbo:application name="order-provider" owner="mic" />
+	<!-- <dubbo:application name="order-provider" owner="mic" /> -->
+	<dubbo:application name="${application.name}" owner="${application.owner}" />
 	<!-- <dubbo:monitor  protocol="registry" /> -->
 	
 	<!-- 这个服务要暴露的服务地址  -->
 	<dubbo:registry  protocol="zookeeper" address="106.54.165.85:2181" />
 	
 	<!-- 当前服务发布所依赖的协议，webserovice、Thrift、Hessain、http 及对应发布的端口号 -->
-	<dubbo:protocol  name="dubbo"  port="20880"   />  <!-- register="false" 不注册，只订阅其他的服务-->
+	<dubbo:protocol  name="dubbo"  port="20880" 
+			threadpool="cached"  threads="200"  accesslog="${dubbo.protocol.accesslog}"
+			/>  <!-- register="false" 不注册，只订阅其他的服务-->
 	
-	<dubbo:protocol  name="hessian" port="8090"  server="jetty"/>
+	<!-- <dubbo:protocol  name="hessian" port="8090"  server="jetty"/> -->
 	
 	<!-- 服务发布的配置：需要暴露的服务 -->
 	<dubbo:service  interface="com.gupao.edu.service.IOrderService" 
-				ref="orderservice"  protocol="dubbo"  version="1.0"/>
-	<dubbo:service  interface="com.gupao.edu.service.IOrderService" 
-				ref="orderservice2"  protocol="dubbo"  version="1.1"/>
-	<dubbo:service  interface="com.gupao.edu.service.IOrderQueryService"
-				ref="orderqueryservice" protocol="dubbo"  version="1.0"/>
+				ref="orderservice"  />
+	<!-- <dubbo:service  interface="com.gupao.edu.service.IOrderService" 
+				ref="orderservice2"  protocol="dubbo"  version="1.1"/> -->
+	<!-- <dubbo:service  interface="com.gupao.edu.service.IOrderQueryService"
+				ref="orderqueryservice" protocol="dubbo"  version="1.0"/> -->
 				
 	<!-- <bean id="orderservice"  class="com.gupao.edu.api.serviceImpl.OrderServiceImpl" />
 	
@@ -41,5 +44,5 @@
 	
 	<bean id="orderqueryservice"  class="com.gupao.edu.api.serviceImpl.OrderQueryServiceImpl" /> -->
    <!-- <import resource="classpath*:META-INF/spring/order-customer.xml"/> -->
-
+	<import resource="classpath*:META-INF/client/user-consumer.xml"/>
 </beans>

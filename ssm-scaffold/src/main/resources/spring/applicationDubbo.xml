@@ -16,6 +16,6 @@
                     address="106.54.165.85:2181"/> 
 
     <import resource="classpath*:META-INF/client/order-consumer.xml"/>
-    <!-- <import resource="classpath*:META-INF/client/user-consumer.xml"/> -->
+    <import resource="classpath*:META-INF/client/user-consumer.xml"/>
 
 </beans>

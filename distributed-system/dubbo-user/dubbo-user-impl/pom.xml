@@ -38,5 +38,61 @@
 	  <artifactId>hessian</artifactId>
 	  <version>4.0.38</version>
 	</dependency>
+	
+	<!-- spring核心包 -->
+	  	<dependency>
+	  		<groupId>org.springframework</groupId>
+	  		<artifactId>spring-core</artifactId>
+	  		<version>4.3.0.RELEASE</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>org.springframework</groupId>
+	  		<artifactId>spring-context</artifactId>
+	  		<version>4.3.0.RELEASE</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>org.springframework</groupId>
+	  		<artifactId>spring-beans</artifactId>
+	  		<version>4.3.0.RELEASE</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>org.springframework</groupId>
+	  		<artifactId>spring-context-support</artifactId>
+	  		<version>4.3.0.RELEASE</version>
+	  	</dependency>
+	  	<!-- spring  事务 -->
+	  	<dependency>
+	  		<groupId>org.springframework</groupId>
+	  		<artifactId>spring-jdbc</artifactId>
+	  		<version>${spring-version}</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>org.springframework</groupId>
+	  		<artifactId>spring-orm</artifactId>
+	  		<version>${spring-version}</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>org.springframework</groupId>
+	  		<artifactId>spring-tx</artifactId>
+	  		<version>${spring-version}</version>
+	  	</dependency>
+	  	
+	<!--mybatis-->
+      <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis</artifactId>
+        <version>3.4.4</version>
+      </dependency>
+
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>5.1.18</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis-spring</artifactId>
+        <version>1.0.1</version>
+      </dependency>
   </dependencies>
 </project>

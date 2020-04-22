@@ -3,9 +3,13 @@ package com.gupao.edu.api.serviceImpl;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
+import com.gupao.edu.Dao.UserDao;
+import com.gupao.edu.dto.DebitRequest;
+import com.gupao.edu.dto.DebitResponse;
 import com.gupao.edu.dto.OrderRequest;
 import com.gupao.edu.dto.OrderResponse;
 import com.gupao.edu.dto.UserLoginRequest;
@@ -18,7 +22,10 @@ import com.gupao.edu.service.IOrderService;
 @Service("userInf")
 public class UserInfImpl  implements  IUserInf{
 	
-
+	@Autowired
+	UserDao  userDao;
+	
+	
 	public void doOrder() {
 
 		IOrderService service = null;
@@ -64,6 +71,15 @@ public class UserInfImpl  implements  IUserInf{
 		request.setName("test");
 		OrderResponse res = service.doOrder(request);
 		System.out.println("订单反馈结果:" + res);
+	}
+
+	public DebitResponse debit(DebitRequest request) {
+		// TODO Auto-generated method stub
+		userDao.updateUser();
+		DebitResponse  response=new DebitResponse();
+		response.setCode("200");
+		response.setMemo("success");
+		return response;
 	}
 
 }
