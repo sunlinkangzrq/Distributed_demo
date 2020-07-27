@@ -10,6 +10,7 @@
     <module>vip-0809-distributelock</module>
     <module>dubbo-order</module>
     <module>dubbo-user</module>
+    <module>springbootdemo</module>
   </modules>
   <dependencyManagement>
   	<dependencies>
